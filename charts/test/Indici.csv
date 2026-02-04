@@ -1,0 +1,27 @@
+Indice,"Sprint 1
+(5/11-16/11)","Sprint 2
+(17/11-30/11)","Sprint 3
+(1/12-14/12)","Sprint 4
+(15/12-28/12)","Sprint 5
+(29/12-11/01)
+","Sprint 6
+(12/01-25/01)"
+"Earned Value
+preventivo * completeness",790,1585,2550,3465,0,
+"Planned Value
+(somma preventivo)",790,1585,2550,3465,4080,
+"Actual Cost
+(somma consuntivo)","597,5","1302,5","2017,5","2932,5",,
+"Cost Performance Index
+EV/AC","1,322175732","1,216890595","1,26394052","1,181585678",0,
+"Schedule Performance Index
+EV / PV",1,1,1,1,0,
+"Estimate At Completion
+BAC / CPI","8652,405063","9401,009464","9051,058824","9681,904762",0,
+"Estimate To Complete
+EAC - AC","8054,905063","8098,509464","7033,558824","6749,404762",0,
+"Time Estimate At Completion
+tempo previsto / SPI",176,176,176,176,0,
+Completeness Issue,1,1,1,1,,
+Budget At Completion,11440,11440,11440,11440,11440,
+Giorni fra 5/11 e 30/04,176,,,,,
