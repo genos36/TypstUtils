@@ -1,4 +1,21 @@
 # Changelog
+## [0.2.0]
+ 
+- `rules`: regole componibili `rule-page`, `rule-text`, `rule-lists`,
+  `rule-raw`, `rule-tables`, `rule-figures`, `rule-links`, `rule-refs`,
+  `rule-headings`, con stili condivisi (`style-internal-ref`,
+  `style-external-link`).
+- `compose`: applica un preset di regole; modifiche per nome (argomenti,
+  sostituzione, disattivazione) e regole `extra` con precedenza.
+- `notes`: template per gli appunti basato su `notes-preset`.
+- Import interni con percorsi assoluti dalla root del package (`/src/...`).
+- `three-slots`: riga a tre posizioni (sinistra, centro, destra).
+- `rule-header`, `rule-footer`, `page-num`.
+- `meta`: dati del documento con default e controllo dei campi.
+- `notes` accetta `meta`: metadati del PDF, lingua di testo e capitoli,
+  intestazione; `notes-preset` diventa una funzione di `meta`.
+- `rule-headings`: la lingua del supplemento è il parametro `lang`
+  (niente più context).
 
 ## [0.1.0]
 

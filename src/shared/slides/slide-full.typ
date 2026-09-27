@@ -1,10 +1,12 @@
 // Layout "pagina intera": una pagina dedicata, con una o più slide
 // ridimensionate per riempirla (con più slide: stile dispensa).
 //
+// Usa context (layout, measure) per adattare le slide allo spazio.
+//
 // Nota: crea una nuova pagina, quindi va chiamato a livello principale
 // del documento, non dentro block, box, liste o griglie.
 
-#import "utils.typ": *
+#import "/src/shared/slides/utils.typ": *
 
 /// - deck: deck creato con `deck(...)`.
 /// - ..pages: una o più pagine (posizionali, trattate come array).
