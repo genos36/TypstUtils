@@ -16,7 +16,7 @@ typst compile --root . examples/demo.typ /tmp/typst-utils-demo.pdf
 
 sed -i "s/^version = .*/version = \"$V\"/" typst.toml
 git diff --quiet || git commit -am "release $V"
-git tag "v$V"
+git tag -a "v$V" -m "release $V"
 git worktree add "$DEST" "v$V"
 
 echo "rilasciata $V → $DEST"
