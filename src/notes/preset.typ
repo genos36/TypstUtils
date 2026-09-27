@@ -13,12 +13,14 @@
   text: (rule: rule-text, args: (lang: meta.lang, leading: 0.6em, spacing: 1em, justify: true)),
   lists: (rule: rule-lists, args: (:)),
   raw: (rule: rule-raw, args: (:)),
+  code: (rule: rule-code, args: (:)),
   tables: (rule: rule-tables, args: (:)),
   figures: (rule: rule-figures, args: (:)),
   links: (rule: rule-links, args: (:)),
   refs: (rule: rule-refs, args: (:)),
   headings: (rule: rule-headings, args: (lang: meta.lang)),
   envs: (rule: rule-envs, args: (:)),
+  markers: (rule: rule-markers, args: (:)),
   // Intestazione: corso a sinistra, anno accademico a destra.
   // Vuota (quindi assente) se meta non li fornisce.
   header: (rule: rule-header, args: (left: meta.title, right: meta.year)),

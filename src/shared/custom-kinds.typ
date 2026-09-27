@@ -21,6 +21,8 @@
   thm: (kind: custom-prefix + "thm", supplement: [Teorema], outline: [Teoremi]),
   definition: (kind: custom-prefix + "definition", supplement: [Definizione], outline: [Definizioni]),
   example: (kind: custom-prefix + "example", supplement: [Esempio], outline: [Esempi]),
+  todo: (kind: custom-prefix + "todo", supplement: [Da fare], outline: [Da fare]),
+  ask: (kind: custom-prefix + "ask", supplement: [Domanda], outline: [Domande per il docente]),
 )
 
 // Controllo di coerenza: nessuna stringa di kind duplicata.

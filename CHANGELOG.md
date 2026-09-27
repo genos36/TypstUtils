@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.0]
+ 
+- `packages.typ`: dipendenze esterne centralizzate (codly 1.3.0,
+  codly-languages 0.1.10).
+- `rule-code`: blocchi di codice con codly (linguaggi, righe alternate,
+  font opzionale, figure di codice spezzabili, `options` passate a codly);
+  incluso nel preset `notes`.
+- `code-fig(caption:, label:)[...]`: codice come figura numerata.
+- Funzioni di codly riesportate (`codly`, `codly-local`, `no-codly`,
+  `codly-range`, `codly-offset`, `codly-skip`, `codly-enable`,
+  `codly-disable`), così i progetti non importano codly da sé.
+- `markers`: `todo` e `ask` (più `marker` generico), con testo breve per
+  gli indici e `detail` facoltativo; kind `todo` e `ask` nel registro.
+- `rule-markers`: aspetto dei marcatori, `visible: false` per nasconderli;
+  incluso nel preset `notes`.
+- `make-outline`: titoli di default anche per `image`, `table`, `raw`.
+
 ## [0.3.0]
  
 - `box`: riquadri visivi `callout` e preset `note`, `tip`, `warning`,

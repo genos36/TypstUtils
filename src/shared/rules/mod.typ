@@ -14,3 +14,5 @@
 #import "/src/shared/rules/header.typ": rule-header
 #import "/src/shared/rules/footer.typ": rule-footer, page-num
 #import "/src/shared/rules/envs.typ": rule-envs
+#import "/src/shared/rules/code.typ": rule-code
+#import "/src/shared/rules/markers.typ": rule-markers

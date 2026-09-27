@@ -4,9 +4,22 @@
 // altrimenti la stringa è usata così com'è (kind definiti dal progetto).
 #let _resolve-kind(k) = if type(k) == str and k in kinds { kinds.at(k).kind } else { k }
 
-// Titolo di default: quello del registro se il kind ne ha uno,
-// altrimenti auto (Typst usa "Indice").
-#let _default-title(k) = if type(k) == str and k in kinds { kinds.at(k).at("outline", default: auto) } else { auto }
+// Titoli di default per i kind built-in.
+#let builtin-outline-titles = (
+  (image, [Elenco delle figure]),
+  (table, [Elenco delle tabelle]),
+  (raw, [Elenco dei codici]),
+)
+
+// Titolo di default: quello del registro se il kind ne ha uno, quello
+// dei built-in per image, table e raw, altrimenti auto (Typst usa "Indice").
+#let _default-title(k) = {
+  if type(k) == str and k in kinds { return kinds.at(k).at("outline", default: auto) }
+  for (builtin, title) in builtin-outline-titles {
+    if k == builtin { return title }
+  }
+  auto
+}
 
 // Selettore dei contenuti da elencare.
 #let _target(k) = {

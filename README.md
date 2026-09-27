@@ -61,12 +61,15 @@ TypstUtils/
 ├── docs/
 │   └── spell-check.md       # configurazione cspell per i repo di appunti
 ├── src/
+│   ├── packages.typ         # dipendenze esterne: versioni solo qui
 │   ├── shared/              # strumenti indipendenti dal tipo di documento
 │   │   ├── custom-kinds.typ # registro dei kind custom
 │   │   ├── slots.typ        # three-slots: sinistra / centro / destra
 │   │   ├── meta.typ         # dati del documento (default e controlli)
 │   │   ├── box.typ          # riquadri visivi (callout)
 │   │   ├── envs.typ         # teoremi, definizioni, esempi, dimostrazioni
+│   │   ├── markers.typ      # todo, domande per il docente
+│   │   ├── code.typ         # code-fig, funzioni di codly riesportate
 │   │   ├── preface/
 │   │   │   ├── mod.typ
 │   │   │   ├── preface.typ     # preface
@@ -87,7 +90,9 @@ TypstUtils/
 │   │       ├── tables.typ   figures.typ  links.typ    refs.typ
 │   │       ├── headings.typ
 │   │       ├── header.typ   footer.typ
-│   │       └── envs.typ     # aspetto degli ambienti
+│   │       ├── envs.typ     # aspetto degli ambienti
+│   │       ├── markers.typ  # aspetto dei marcatori
+│   │       └── code.typ     # codly
 │   └── notes/               # appunti
 │       ├── mod.typ
 │       ├── preset.typ       # regole e valori scelti per gli appunti
@@ -96,6 +101,7 @@ TypstUtils/
     ├── demo.typ             # slide
     ├── notes-demo.typ       # template e regole
     ├── envs-demo.typ        # copertina, indici, ambienti, riquadri
+    ├── code-demo.typ        # codice e marcatori
     └── slides/L03.pdf       # PDF di prova
 ```
  
@@ -160,6 +166,23 @@ un'altra lingua: `theorem.with(supplement: [Theorem])`). `proof(title:,
 qed:)` non è numerata. L'aspetto lo dà `rule-envs`; senza, gli ambienti
 appaiono come figure standard.
  
+### `shared/markers` — marcatori di revisione
+ 
+`todo(detail:)[testo breve]` e `ask(detail:)[domanda]`: figure con kind del
+registro, quindi numerate e raccolte negli indici (`"todo"`, `"ask"` in
+`preface` o `make-outline`). Il testo breve compare nell'indice, `detail`
+solo nel testo. L'aspetto lo dà `rule-markers` (`visible: false` li
+nasconde, es. per una versione da condividere). Diversamente da
+`question` (box), `ask` è numerata e indicizzata.
+ 
+### `shared/code` — codice
+ 
+`code-fig(caption:, label:)[```lang ...```]`: codice come figura numerata.
+Le funzioni di codly sono riesportate (`codly`, `codly-local`, `no-codly`,
+`codly-range`, `codly-offset`, `codly-skip`, `codly-enable`,
+`codly-disable`): il progetto non importa codly direttamente, così la
+versione resta quella di `src/packages.typ`.
+ 
 ### `shared/preface` — parte introduttiva
  
 `preface(outlines:, numbering:)[contenuto]`: contenuto iniziale e indici
@@ -216,6 +239,8 @@ funzione `body => ...`, usabile anche da sola (`#show: rule-lists()`).
 | `rule-header` | `left`, `center`, `right`, `size`, `line`, `gap` |
 | `rule-footer` | `left`, `center`, `right`, `size`, `line`, `gap` |
 | `rule-envs` | `colors` (per voce del registro), `spacing` |
+| `rule-markers` | `colors` (per voce del registro), `visible` |
+| `rule-code` | `languages`, `zebra-fill`, `font`, `breakable`, `options` (passate a codly) |
  
 Header e footer senza contenuto non modificano la pagina. Un footer
 personalizzato sostituisce la numerazione standard: il numero va inserito
@@ -236,12 +261,12 @@ volta con `notes.with(meta: ..., rules: ...)`.
  
 ## Dipendenze (da Typst Universe)
  
-Da valutare, riesportate con stile uniforme:
+Le versioni sono definite solo in `src/packages.typ`; al momento: `codly`,
+`codly-languages`. Da valutare, riesportate con stile uniforme:
  
 - `curryst`: regole di inferenza (Hoare, sistemi di tipi)
 - `fletcher`: automi e diagrammi
 - `lovelace`: pseudocodice
-- `codly`: blocchi di codice
 ## Controllo ortografico
  
 Per i repository di appunti si usa **cspell** con dizionario italiano e
@@ -261,11 +286,14 @@ npm install && npm run spell
   `three-slots`, header e footer, `page-num`, `meta`
 - [ ] **0.3.0**: `box`, `envs` con `rule-envs`, `preface`, `title-page`,
   `make-outline`
+- [ ] **0.4.0**: `markers` (`todo`, `ask`) con `rule-markers`; codly con
+  `rule-code`, `code-fig` e funzioni riesportate; `packages.typ`
 - [ ] Da valutare
   - `current-chapter` per l'intestazione (context, opt-in)
   - numerazione degli ambienti per capitolo (es. Teorema 2.3)
   - notazioni matematiche comuni, eventualmente come regola
-  - `markers` (todo, domande, argomenti d'esame) con indici
+  - altri marcatori (es. argomenti d'esame)
+  - `code-file`: codice incluso da file, con linguaggio dall'estensione
   - regola per parole composte non spezzabili
   - facade `slide(deck:, mode: ...)` dopo l'uso reale dei tre layout
   - integrazione `curryst`, `fletcher`, `lovelace`, `codly`
@@ -276,3 +304,4 @@ Semver semplificato: **patch** per correzioni senza impatto sull'output,
 **minor** per aggiunte o modifiche dell'output/API. Ogni progetto di appunti
 importa una versione fissa, così i documenti vecchi compilano sempre uguali.
 Le modifiche sono registrate in `CHANGELOG.md`.
+ 
