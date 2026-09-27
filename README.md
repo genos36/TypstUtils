@@ -12,7 +12,8 @@ Il repo di sviluppo vive in una cartella qualsiasi; ogni versione rilasciata
 viene esposta a Typst tramite `git worktree`:
 
 ```bash
-git clone https://github.com/genos36/TypstUtils ~/progetti/TypstUtilscd ~/progetti/TypstUtils
+git clone https://github.com/genos36/TypstUtils ~/progetti/TypstUtils
+cd ~/progetti/TypstUtils
 # TESTATO ESCLUSIVAMENTE SU LINUX
 ./release.sh 0.1.0   # bump typst.toml, commit, tag, worktree
 ```
