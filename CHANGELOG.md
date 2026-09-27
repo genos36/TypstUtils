@@ -1,4 +1,8 @@
 # Changelog
+## [0.2.1]
+fixed stuff
+
+
 ## [0.2.0]
  
 - `rules`: regole componibili `rule-page`, `rule-text`, `rule-lists`,
