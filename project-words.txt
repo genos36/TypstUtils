@@ -1,0 +1,4 @@
+Tinymist
+bisimulazione
+automa
+pseudocodice

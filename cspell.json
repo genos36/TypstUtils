@@ -1,0 +1,30 @@
+{
+  "version": "0.2",
+  "language": "it,en",
+  "import": ["@cspell/dict-it-it/cspell-ext.json"],
+  "enableFiletypes": ["typst"],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./project-words.txt",
+      "addWords": true
+    }
+  ],
+"dictionaries": ["project-words", "it-it"],
+"ignorePaths": ["node_modules/**", ".git/**", "*.pdf", "package-lock.json"],
+  "overrides": [
+    {
+      "filename": "**/*.typ",
+      "ignoreRegExpList": [
+        "/```[\\s\\S]*?```/g",
+        "/`[^`\\n]*`/g",
+        "/(?<!\\\\)\\$[\\s\\S]*?(?<!\\\\)\\$/g",
+        "/#import.*$/gm",
+        "/#[\\w.-]+/g",
+        "/<[\\w:.-]+>/g",
+        "/@[\\w:.-]+/g",
+        "/\"[^\"\\n]*\"/g"
+      ]
+    }
+  ]
+}
