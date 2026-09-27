@@ -18,6 +18,7 @@
   links: (rule: rule-links, args: (:)),
   refs: (rule: rule-refs, args: (:)),
   headings: (rule: rule-headings, args: (lang: meta.lang)),
+  envs: (rule: rule-envs, args: (:)),
   // Intestazione: corso a sinistra, anno accademico a destra.
   // Vuota (quindi assente) se meta non li fornisce.
   header: (rule: rule-header, args: (left: meta.title, right: meta.year)),

@@ -26,6 +26,7 @@ Su una nuova macchina, per ripristinare una versione già rilasciata:
 git worktree add ~/.local/share/typst/packages/local/typst-utils/0.1.0 v0.1.0
 ```
 
+
 ## Uso rapido
  
 ```typ
@@ -64,6 +65,13 @@ TypstUtils/
 │   │   ├── custom-kinds.typ # registro dei kind custom
 │   │   ├── slots.typ        # three-slots: sinistra / centro / destra
 │   │   ├── meta.typ         # dati del documento (default e controlli)
+│   │   ├── box.typ          # riquadri visivi (callout)
+│   │   ├── envs.typ         # teoremi, definizioni, esempi, dimostrazioni
+│   │   ├── preface/
+│   │   │   ├── mod.typ
+│   │   │   ├── preface.typ     # preface
+│   │   │   ├── title-page.typ  # copertina
+│   │   │   └── outlines.typ    # make-outline polimorfico
 │   │   ├── slides/
 │   │   │   ├── mod.typ      # riesporta le funzioni pubbliche
 │   │   │   ├── utils.typ    # controlli, didascalie, immagini (interne)
@@ -78,7 +86,8 @@ TypstUtils/
 │   │       ├── page.typ     text.typ     lists.typ    raw.typ
 │   │       ├── tables.typ   figures.typ  links.typ    refs.typ
 │   │       ├── headings.typ
-│   │       └── header.typ   footer.typ
+│   │       ├── header.typ   footer.typ
+│   │       └── envs.typ     # aspetto degli ambienti
 │   └── notes/               # appunti
 │       ├── mod.typ
 │       ├── preset.typ       # regole e valori scelti per gli appunti
@@ -86,6 +95,7 @@ TypstUtils/
 └── examples/
     ├── demo.typ             # slide
     ├── notes-demo.typ       # template e regole
+    ├── envs-demo.typ        # copertina, indici, ambienti, riquadri
     └── slides/L03.pdf       # PDF di prova
 ```
  
@@ -134,6 +144,42 @@ Dati passati esplicitamente, senza context. Campi (`default-meta`):
 `title`, `author` (stringa o array di stringhe), `date` (datetime), `lang`,
 `teacher`, `year`, `degree`. Un campo sconosciuto produce un errore.
  
+### `shared/box` — riquadri visivi
+ 
+`callout(title:, color:, fill-lighten:, breakable:)[...]` e i preset
+`note`, `tip`, `warning`, `question` (titolo sovrascrivibile). Non numerati
+né referenziabili.
+ 
+### `shared/envs` — ambienti
+ 
+Figure con kind del registro, quindi numerate, referenziabili e
+indicizzabili. `theorem`, `lemma`, `corollary`, `proposition` condividono la
+numerazione (kind `thm`); `definition` ed `example` hanno la propria.
+Argomenti: `title` (tra parentesi nel titolo) e `supplement` (nome, es. per
+un'altra lingua: `theorem.with(supplement: [Theorem])`). `proof(title:,
+qed:)` non è numerata. L'aspetto lo dà `rule-envs`; senza, gli ambienti
+appaiono come figure standard.
+ 
+### `shared/preface` — parte introduttiva
+ 
+`preface(outlines:, numbering:)[contenuto]`: contenuto iniziale e indici
+con numerazione a parte (default romana), poi la numerazione riparte da 1.
+`title-page(meta:, subtitle:, date-format:, extra:)`: copertina senza
+intestazione né numero. `make-outline(spec:)` accetta:
+ 
+| Spec | Significato |
+|---|---|
+| stringa | `"heading"`, un nome del registro (`"thm"`, `"slide"`...) con il titolo di indice del registro, o una stringa di kind qualsiasi |
+| tipo | `heading`, `image`, `table`, `raw` |
+| dizionario | `kind` → `target`, il resto va a `outline` |
+| content | un `outline(...)` già costruito |
+ 
+```typ
+#preface(outlines: ("heading", "thm", (kind: "slide", depth: 1)))[
+  #title-page(meta: meta, subtitle: [Appunti del corso])
+]
+```
+ 
 ### `shared/slides` — pagine dai PDF del docente
  
 `deck(file:, name:, frame:, gap:)` dichiara un PDF (`file` come `path(...)`
@@ -169,6 +215,7 @@ funzione `body => ...`, usabile anche da sola (`#show: rule-lists()`).
 | `rule-headings` | `numbering`, `above`, `below`, `chapter-break`, `chapter-style`, `supplement`, `lang` |
 | `rule-header` | `left`, `center`, `right`, `size`, `line`, `gap` |
 | `rule-footer` | `left`, `center`, `right`, `size`, `line`, `gap` |
+| `rule-envs` | `colors` (per voce del registro), `spacing` |
  
 Header e footer senza contenuto non modificano la pagina. Un footer
 personalizzato sostituisce la numerazione standard: il numero va inserito
@@ -208,30 +255,16 @@ npm install && npm run spell
  
 ## Roadmap
  
-- [x] **0.1.0**: `custom-kinds` (registro dei kind); `slides` con `deck`,
-  `slide-fig`, `slide-full`, `slide-side`, `slide-outline`
-- [ ] **0.2.0**: regole componibili (`page`, `text`, `lists`, `raw`,
-  `tables`, `figures`, `links`, `refs`, `headings`), `compose`, preset e
-  template `notes`
-- [ ] **0.3.0**: header e footer
-  - [x] `three-slots` (sinistra / centro / destra) come infrastruttura generica
-  - [x] `rule-header`, `rule-footer`; nel preset `notes` intestazione da
-    `meta` e numerazione standard
-  - [x] dati del documento passati esplicitamente (`meta`), senza context
-  - [x] `page-num` (context, opt-in)
-  - [ ] `current-chapter` (context, opt-in)
-- [ ] **0.4.0**: parte introduttiva
-  - `preface(outlines: ...)[copertina]`: pagine in numeri romani, poi
-    ripartenza da 1
-  - `title-page(...)` componibile, dati da `meta`
-  - outline polimorfico: stringa (kind, risolto tramite `kinds`), tipo
-    built-in, dizionario (`kind` → `target` + spreading), content
-- [ ] **0.5.0**: ambienti e notazioni
-  - `box`: riquadri visivi non numerati (nota, attenzione, domanda)
-  - `envs`: definizione, teorema, lemma, corollario, esempio (kind nel
-    registro, numerati e referenziabili) e dimostrazione (∎)
-  - `math`: notazioni comuni (insiemi, `bigO`, computabilità, logica)
+- [x] **0.1.0**: `custom-kinds`; `slides` (`deck`, `slide-fig`,
+  `slide-full`, `slide-side`, `slide-outline`)
+- [x] **0.2.0**: regole componibili, `compose`, preset e template `notes`;
+  `three-slots`, header e footer, `page-num`, `meta`
+- [ ] **0.3.0**: `box`, `envs` con `rule-envs`, `preface`, `title-page`,
+  `make-outline`
 - [ ] Da valutare
+  - `current-chapter` per l'intestazione (context, opt-in)
+  - numerazione degli ambienti per capitolo (es. Teorema 2.3)
+  - notazioni matematiche comuni, eventualmente come regola
   - `markers` (todo, domande, argomenti d'esame) con indici
   - regola per parole composte non spezzabili
   - facade `slide(deck:, mode: ...)` dopo l'uso reale dei tre layout

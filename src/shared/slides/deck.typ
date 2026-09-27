@@ -1,7 +1,7 @@
 // Dichiarazione di un PDF di slide e indice delle slide.
 
-#import "utils.typ": deck-tag
-#import "../custom-kinds.typ": kinds, kind-selector
+#import "/src/shared/slides/utils.typ": deck-tag
+#import "/src/shared/custom-kinds.typ": kinds, kind-selector
 
 /// Dichiara un PDF di slide. Restituisce un dizionario da passare
 /// alle funzioni di layout come `deck:`.
@@ -20,7 +20,7 @@
 }
 
 /// Indice delle sole slide citate nel documento.
-#let slide-outline(title: [Slide citate]) = outline(
+#let slide-outline(title: kinds.slide.outline) = outline(
   title: title,
   target: kind-selector(kind: kinds.slide),
 )

@@ -13,3 +13,4 @@
 #import "/src/shared/rules/headings.typ": rule-headings, chapter-names
 #import "/src/shared/rules/header.typ": rule-header
 #import "/src/shared/rules/footer.typ": rule-footer, page-num
+#import "/src/shared/rules/envs.typ": rule-envs

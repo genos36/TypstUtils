@@ -1,4 +1,25 @@
 # Changelog
+
+## [0.3.0]
+ 
+- `box`: riquadri visivi `callout` e preset `note`, `tip`, `warning`,
+  `question`.
+- `envs`: `theorem`, `lemma`, `corollary`, `proposition` (numerazione
+  condivisa), `definition`, `example` come figure con kind del registro;
+  `proof` non numerata con ∎; `env` generico.
+- `rule-envs`: aspetto degli ambienti, incluso nel preset `notes`.
+- `custom-kinds`: kind `thm`, `definition`, `example`; campo `outline` con il
+  titolo di default dell'indice; `kind-figure` accetta un `supplement`
+  che sostituisce quello del registro.
+- `preface(outlines:)[...]`: parte introduttiva con numerazione separata,
+  poi ripartenza da 1; `title-page(meta:)`; `make-outline(spec:)`
+  polimorfico (stringa, tipo, dizionario, content).
+- `rule-refs`: stile applicato anche ai riferimenti agli ambienti.
+- `compose`: controlli sui tipi di `preset`, `rules`, `extra`.
+
+
+
+
 ## [0.2.1]
 fixed stuff
 

@@ -4,7 +4,7 @@
 /// Stile dei riferimenti (@label) a titoli e figure dei kind indicati.
 /// Gli altri riferimenti (equazioni, citazioni...) restano invariati.
 #let rule-refs(
-  kinds: (image, table, raw, kinds.slide.kind),
+  kinds: (image, table, raw, kinds.slide.kind, kinds.thm.kind, kinds.definition.kind, kinds.example.kind),
   headings: true,
   style: style-internal-ref,
 ) = body => {
