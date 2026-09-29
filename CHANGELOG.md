@@ -1,4 +1,10 @@
 # Changelog
+## [0.5.0]
+ 
+- `strings`: `to-kebab`, `to-snake`, `to-camel`, `to-pascal` per chiavi,
+  label e nomi; `words` (divisione in parole, anche camelCase) e
+  `to-string` (testo da content semplice). Opzione `ascii` per togliere
+  gli accenti.
 
 ## [0.4.0]
  

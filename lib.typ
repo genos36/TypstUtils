@@ -9,3 +9,5 @@
 #import "/src/shared/slides/mod.typ": deck, slide-outline, slide-fig, slide-full, slide-side
 #import "/src/shared/rules/mod.typ": *
 #import "/src/notes/mod.typ": notes, notes-preset
+
+#import "/src/shared/string-manipulation/strings.typ": to-string, words, to-kebab, to-snake, to-camel, to-pascal
