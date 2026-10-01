@@ -6,6 +6,7 @@
 #import "/src/shared/rules/text.typ": rule-text
 #import "/src/shared/rules/lists.typ": rule-lists
 #import "/src/shared/rules/raw.typ": rule-raw
+#import "/src/shared/rules/math.typ": rule-math
 #import "/src/shared/rules/tables.typ": rule-tables
 #import "/src/shared/rules/figures.typ": rule-figures
 #import "/src/shared/rules/links.typ": rule-links

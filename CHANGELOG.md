@@ -1,4 +1,16 @@
 # Changelog
+
+## [0.5.1]
+- aggiunta regola per le equazioni
+- aggiunto notes/exercise e notes/solution,
+
+the intended use of solution it's to import it then 
+
+hide or show the solution by redefining the function like this
+```
+#let solution = solution.with(visible:false)
+```
+
 ## [0.5.0]
  
 - `strings`: `to-kebab`, `to-snake`, `to-camel`, `to-pascal` per chiavi,

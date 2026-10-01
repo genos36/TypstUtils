@@ -30,6 +30,7 @@
 
 #let definition(supplement: [Definizione], title: none, body) = env(kind: kinds.definition, supplement: supplement, title: title, body)
 #let example(supplement: [Esempio], title: none, body) = env(kind: kinds.example, supplement: supplement, title: title, body)
+#let exercise(supplement: [Esercizio], title: none, body) = env(kind: kinds.exercise, supplement: supplement, title: title, body)
 
 /// Dimostrazione: non numerata, non referenziabile, chiusa da ∎.
 ///
@@ -45,3 +46,17 @@
     if qed != none { h(1fr); qed }
   },
 )
+
+/// Soluzione di un esercizio: non numerata, non referenziabile.
+///
+/// - title: intestazione (es. [Soluzione dell'Esercizio 2]).
+/// - visible: se false la soluzione non compare, per una versione da
+///   esercitazione. Nel progetto si fissa una volta, es. da riga di comando
+///   (`typst compile --input solutions=false ...`):
+///     #let show-solutions = sys.inputs.at("solutions", default: "true") == "true"
+///     #let solution = solution.with(visible: show-solutions)
+/// - body: contenuto.
+#let solution(title: [Soluzione], visible: true, body) = {
+  assert(type(visible) == bool, message: "solution: `visible` deve essere un booleano")
+  if visible { proof(title: title, qed: none, body) }
+}

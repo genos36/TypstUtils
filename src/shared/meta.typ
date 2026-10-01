@@ -4,7 +4,8 @@
 //   #let meta = (title: [Computability], author: "Genos", year: [2026/27])
 // e li passa a chi ne ha bisogno (template, copertina...).
 
-/// Campi riconosciuti e valori di default.
+/// Campi riconosciuti e valori di default. Altri campi sono ammessi e
+/// passati invariati: li usa il progetto (es. `university` in un header).
 /// - title:   titolo del documento (di norma il nome del corso)
 /// - author:  autore, stringa o array di stringhe (va nei metadati PDF)
 /// - date:    datetime, none per non indicarla
@@ -22,16 +23,11 @@
   degree: none,
 )
 
-/// Unisce i dati del progetto ai default, rifiutando campi sconosciuti
-/// (probabili errori di battitura).
+/// Unisce i dati del progetto ai default e controlla i tipi dei campi
+/// riconosciuti. I campi aggiuntivi passano invariati (quindi un refuso
+/// come `teachr` non dà errore: il campo `teacher` resta al default).
 #let resolve-meta(meta: (:)) = {
   assert(type(meta) == dictionary, message: "meta: deve essere un dizionario")
-  for key in meta.keys() {
-    assert(
-      key in default-meta,
-      message: "meta: campo sconosciuto `" + key + "`; disponibili: " + default-meta.keys().join(", "),
-    )
-  }
   let m = default-meta + meta
   assert(
     m.author == none or type(m.author) == str

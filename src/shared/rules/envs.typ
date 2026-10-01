@@ -4,13 +4,14 @@
 /// Aspetto degli ambienti (teoremi, definizioni, esempi): riquadri con
 /// titolo "Teorema 3 (Rice)." e contenuto allineato a sinistra.
 ///
-/// - colors: colore per voce del registro (thm, definition, example).
+/// - colors: colore per voce del registro (thm, definition, example, exercise).
 /// - spacing: spazio sopra e sotto ogni ambiente.
 #let rule-envs(
   colors: (
     thm: rgb("#2f6db5"),
     definition: rgb("#2e8540"),
     example: luma(110),
+    exercise: rgb("#00838f"),
   ),
   spacing: 1.2em,
 ) = body => {

@@ -13,6 +13,7 @@
   text: (rule: rule-text, args: (lang: meta.lang, leading: 0.6em, spacing: 1em, justify: true)),
   lists: (rule: rule-lists, args: (:)),
   raw: (rule: rule-raw, args: (:)),
+  math: (rule: rule-math, args: (:)),
   code: (rule: rule-code, args: (:)),
   tables: (rule: rule-tables, args: (:)),
   figures: (rule: rule-figures, args: (:)),
