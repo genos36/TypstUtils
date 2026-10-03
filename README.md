@@ -260,6 +260,7 @@ funzione `body => ...`, usabile anche da sola (`#show: rule-lists()`).
 | `rule-footer` | `left`, `center`, `right`, `size`, `line`, `gap` |
 | `rule-envs` | `colors` (per voce del registro), `spacing` |
 | `rule-markers` | `colors` (per voce del registro), `visible` |
+| `rule-missing-refs` | `placeholder` (funzione); solo per compilare un capitolo da solo, non nel preset |
 | `rule-code` | `languages`, `zebra-fill`, `font`, `breakable`, `options` (passate a codly) |
  
 Header e footer senza contenuto non modificano la pagina. Un footer
@@ -278,6 +279,37 @@ la disattiva. Le `extra` sono applicate per ultime e hanno la precedenza.
 testo e capitoli, e l'intestazione (corso a sinistra, anno a destra). Il
 footer di default è la numerazione standard. Nel progetto si configura una
 volta con `notes.with(meta: ..., rules: ...)`.
+ 
+## Appunti su più file
+ 
+Ogni capitolo è compilabile da solo e il documento completo li riunisce con
+una sola bibliografia (e, allo stesso modo, un solo glossario o indice).
+Si sfrutta il fatto che **importare un file ne ignora il contenuto
+visibile**: solo i binding (`#let`) vengono importati. È l'equivalente di
+`if __name__ == "__main__"`.
+ 
+```typ
+// chapters/turing.typ
+#import "../common.typ": *
+#let body = [
+  = Macchine di Turing <cap:turing>
+  ...
+]
+// Solo se questo file è l'entrypoint:
+#show: chapter-notes        // notes + rule-missing-refs
+#body
+#course-bib()
+ 
+// main.typ
+#import "chapters/turing.typ" as turing
+#show: course-notes
+#turing.body
+#course-bib()
+```
+ 
+Nel capitolo singolo i riferimenti ad altri capitoli (`@cap:rice`)
+diventano segnaposto grazie a `rule-missing-refs`; nel documento completo
+restano riferimenti veri. Esempio completo in `examples/multi/`.
  
 ## Dipendenze (da Typst Universe)
  

@@ -1,4 +1,10 @@
 # Changelog
+
+## [0.5.3]
+
+- `rule-terms` added show rule to allow ref to other chapter to non existing label, it aims to allow documents to be compilable both as standalone documents or as one big document. it don't handle common part of the document like outlines or bibliography
+
+
 ## [0.5.2]
  
 - `rule-terms`: separatore, rientri e stile del termine negli elenchi di

@@ -18,3 +18,4 @@
 #import "/src/shared/rules/code.typ": rule-code
 #import "/src/shared/rules/markers.typ": rule-markers
 #import "/src/shared/rules/terms.typ": rule-terms
+#import "/src/shared/rules/missing-refs.typ": rule-missing-refs
