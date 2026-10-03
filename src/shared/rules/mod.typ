@@ -17,3 +17,4 @@
 #import "/src/shared/rules/envs.typ": rule-envs
 #import "/src/shared/rules/code.typ": rule-code
 #import "/src/shared/rules/markers.typ": rule-markers
+#import "/src/shared/rules/terms.typ": rule-terms

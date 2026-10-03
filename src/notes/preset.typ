@@ -16,6 +16,7 @@
   math: (rule: rule-math, args: (:)),
   code: (rule: rule-code, args: (:)),
   tables: (rule: rule-tables, args: (:)),
+  terms: (rule: rule-terms, args: (:)),
   figures: (rule: rule-figures, args: (:)),
   links: (rule: rule-links, args: (:)),
   refs: (rule: rule-refs, args: (:)),

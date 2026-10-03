@@ -1,4 +1,12 @@
 # Changelog
+## [0.5.2]
+ 
+- `rule-terms`: separatore, rientri e stile del termine negli elenchi di
+  termini, mantenendo l'impaginazione nativa e il grassetto nelle
+  descrizioni. Lo stile è una funzione (`term-style`, default `emph`);
+  voce `terms` nel preset `notes`, quindi termini in corsivo di default.
+
+
 
 ## [0.5.1]
 - aggiunta regola per le equazioni

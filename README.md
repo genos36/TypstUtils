@@ -65,6 +65,7 @@ TypstUtils/
 │   ├── shared/              # strumenti indipendenti dal tipo di documento
 │   │   ├── custom-kinds.typ # registro dei kind custom
 │   │   ├── slots.typ        # three-slots: sinistra / centro / destra
+│   │   ├── strings.typ      # to-kebab, to-snake, to-camel, to-pascal
 │   │   ├── meta.typ         # dati del documento (default e controlli)
 │   │   ├── box.typ          # riquadri visivi (callout)
 │   │   ├── envs.typ         # teoremi, definizioni, esempi, dimostrazioni
@@ -86,7 +87,7 @@ TypstUtils/
 │   │       ├── mod.typ      # riesporta regole, stili e compose
 │   │       ├── compose.typ  # applica un preset con modifiche
 │   │       ├── styles.typ   # stili di link e riferimenti
-│   │       ├── page.typ     text.typ     lists.typ    raw.typ
+│   │       ├── page.typ     text.typ     lists.typ    terms.typ    raw.typ
 │   │       ├── tables.typ   figures.typ  links.typ    refs.typ
 │   │       ├── headings.typ
 │   │       ├── header.typ   footer.typ
@@ -122,6 +123,9 @@ regressione.
   (`l03(12, 13)` → pagine `(12, 13)`).
 - **Due posizionali** solo nel caso "alla `align`": esattamente due
   posizionali e nessun altro argomento.
+- **Funzioni pure su un singolo valore** (conversioni di stringhe) hanno
+  il valore posizionale, come `lower` e `upper` di Typst:
+  `to-kebab("...")`; le opzioni restano nominali.
 - **Kind custom** solo tramite il registro `kinds` in
   `src/shared/custom-kinds.typ`, con stringhe prefissate `tu-`.
 - **`context` solo dove inevitabile** (misure, contatori di pagina, query).
@@ -143,6 +147,21 @@ kind, `kind-selector(kind:)` il selettore per outline e show rule.
 `three-slots(left:, center:, right:)`: riga con contenuto a sinistra, al
 centro e a destra; il centro resta centrato anche con lati di lunghezza
 diversa. Base di header e footer, riusabile altrove.
+ 
+### `shared/strings` — conversioni di stringhe
+ 
+`to-kebab`, `to-snake`, `to-camel`, `to-pascal`: accettano stringhe o
+content semplice (testo, spazi, enfasi) e l'opzione `ascii` per togliere
+gli accenti. Utili per chiavi di dizionari e label generate dal testo.
+ 
+```typ
+#to-kebab([Teorema di *Rice*])                   // "teorema-di-rice"
+#to-camel("macchina_di-turing")                  // "macchinaDiTuring"
+#to-kebab("Riducibilità e Rice", ascii: true)    // "riducibilita-e-rice"
+```
+ 
+Si basano su `words` (divide in parole minuscole, riconoscendo spazi,
+punteggiatura e confini camelCase) e `to-string` (testo da content).
  
 ### `shared/meta` — dati del documento
  
@@ -230,6 +249,7 @@ funzione `body => ...`, usabile anche da sola (`#show: rule-lists()`).
 | `rule-page` | `paper`, `margin`, `numbering`, `number-align` |
 | `rule-text` | `font`, `size`, `lang`, `leading`, `spacing`, `justify` |
 | `rule-lists` | `markers` |
+| `rule-terms` | `term-style` (funzione, default `emph`; none = grassetto), `separator`, `indent`, `hanging-indent`, `strong-delta` |
 | `rule-raw` | `size` |
 | `rule-tables` | `inset`, `zebra`, `breakable`, `keep-cells` |
 | `rule-figures` | `kinds`, `spacing` |
@@ -288,6 +308,8 @@ npm install && npm run spell
   `make-outline`
 - [ ] **0.4.0**: `markers` (`todo`, `ask`) con `rule-markers`; codly con
   `rule-code`, `code-fig` e funzioni riesportate; `packages.typ`
+- [ ] **0.5.0**: `strings` (`to-kebab`, `to-snake`, `to-camel`,
+  `to-pascal`, `words`, `to-string`)
 - [ ] Da valutare
   - `current-chapter` per l'intestazione (context, opt-in)
   - numerazione degli ambienti per capitolo (es. Teorema 2.3)
@@ -298,10 +320,14 @@ npm install && npm run spell
   - facade `slide(deck:, mode: ...)` dopo l'uso reale dei tre layout
   - integrazione `curryst`, `fletcher`, `lovelace`, `codly`
   - helper per matrici dei payoff
+## Contribuire
+ 
+Architettura, scelte di design, ambiente di sviluppo e flusso di lavoro sono
+descritti in [CONTRIBUTING.md](CONTRIBUTING.md).
+ 
 ## Versionamento
  
 Semver semplificato: **patch** per correzioni senza impatto sull'output,
 **minor** per aggiunte o modifiche dell'output/API. Ogni progetto di appunti
 importa una versione fissa, così i documenti vecchi compilano sempre uguali.
 Le modifiche sono registrate in `CHANGELOG.md`.
- 
