@@ -1,4 +1,4 @@
 [package]
 name = "typst-utils"
-version = "0.5.2"
+version = "0.5.3"
 entrypoint = "lib.typ"
