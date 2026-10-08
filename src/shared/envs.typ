@@ -16,23 +16,33 @@
 /// - supplement: nome dell'ambiente; auto → quello del registro.
 /// - title: titolo facoltativo, mostrato tra parentesi (es. [Rice]).
 /// - body: contenuto.
-#let env(kind: none, supplement: auto, title: none, body) = {
+#let env(
+  kind: none, 
+  supplement: auto, 
+  title: none,
+  label:none, 
+  body) = {
   let args = (kind: kind, caption: title)
   if supplement != auto { args.insert("supplement", supplement) }
-  kind-figure(..args, body)
+  kind-figure(..args, body, label: label)
 }
 
 // Teorema, lemma, corollario e proposizione condividono la numerazione.
-#let theorem(supplement: [Teorema], title: none, body) = env(kind: kinds.thm, supplement: supplement, title: title, body)
-#let lemma(supplement: [Lemma], title: none, body) = env(kind: kinds.thm, supplement: supplement, title: title, body)
-#let corollary(supplement: [Corollario], title: none, body) = env(kind: kinds.thm, supplement: supplement, title: title, body)
-#let proposition(supplement: [Proposizione], title: none, body) = env(kind: kinds.thm, supplement: supplement, title: title, body)
+#let theorem(supplement: [Teorema], title: none,label:none, body,) = env(kind: kinds.thm, supplement: supplement, title: title,label:none, body)
 
-#let definition(supplement: [Definizione], title: none, body) = env(kind: kinds.definition, supplement: supplement, title: title, body)
-#let example(supplement: [Esempio], title: none, body) = env(kind: kinds.example, supplement: supplement, title: title, body)
-#let exercise(supplement: [Esercizio], title: none, body) = env(kind: kinds.exercise, supplement: supplement, title: title, body)
+#let lemma(supplement: [Lemma], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:none, body)
 
-/// Dimostrazione: non numerata, non referenziabile, chiusa da ∎.
+#let corollary(supplement: [Corollario], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:none, body)
+
+#let proposition(supplement: [Proposizione], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:none, body)
+
+#let definition(supplement: [Definizione], title: none,label:none, body) = env(kind: kinds.definition, supplement: supplement, title: title,label:none, body)
+
+#let example(supplement: [Esempio], title: none,label:none, body) = env(kind: kinds.example, supplement: supplement, title: title,label:none, body)
+
+#let exercise(supplement: [Esercizio], title: none,label:none, body) = env(kind: kinds.exercise, supplement: supplement, title: title,label:none, body)
+
+/// Dimostrazione: non numerata, non referenziabile, chiusa da.
 ///
 /// - title: intestazione (es. [Dimostrazione del Lemma 3]).
 /// - qed: simbolo finale, none per ometterlo.

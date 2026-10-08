@@ -47,12 +47,18 @@
 /// - ..args: argomenti nominali passati a `figure` (caption, placement, gap...).
 ///   Un `supplement` esplicito sostituisce quello del registro.
 /// - body: contenuto della figura.
-#let kind-figure(kind: none, ..args, body) = {
+#let kind-figure(
+  kind: none,
+  label:none, 
+  ..args, 
+  body,
+  ) = {
   _check-kind("kind-figure", kind)
   assert(args.pos().len() == 0, message: "kind-figure: accetta solo argomenti nominali oltre al contenuto")
   let named = args.named()
   let supplement = named.remove("supplement", default: kind.supplement)
-  figure(body, kind: kind.kind, supplement: supplement, ..named)
+  let lbl = if type(label) == str { std.label(label) } else { label }
+  [#figure(body, kind: kind.kind, supplement: supplement, ..named)#lbl]
 }
 
 /// Selettore per tutte le figure di un kind, utile per outline e show rule.
