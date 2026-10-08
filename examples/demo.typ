@@ -9,8 +9,8 @@
 Pagina singola in @sl:uno, due pagine affiancate in @sl:due,
 pagina intera in @sl:intera, affiancata al testo in @sl:side.
 
-#slide-fig(deck: l03, 1) <sl:uno>
-#slide-fig(deck: l03, 2, 3, caption: [Riduzione, in due passi]) <sl:due>
+#slide-fig(deck: l03, 1, label:<sl:uno> ) 
+#slide-fig(deck: l03, 2, 3, caption: [Riduzione, in due passi],label:<sl:due>) 
 
 = Affiancate al testo
 #slide-side(deck: l03, page: 2, label: <sl:side>)[

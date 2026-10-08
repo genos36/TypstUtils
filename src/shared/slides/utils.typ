@@ -68,9 +68,4 @@
 /// Figura di kind slide, con label opzionale applicata alla figura stessa
 /// (serve quando la figura è annidata in un layout e `<label>` dopo la
 /// chiamata finirebbe sul contenitore invece che sulla figura).
-#let slide-figure(caption: none, label: none, body) = {
-  let fig = kind-figure(kind: kinds.slide, caption: caption, body)
-  if label == none { return fig }
-  let lbl = if type(label) == str { std.label(label) } else { label }
-  [#fig#lbl]
-}
+#let slide-figure(caption: none, label: none, body) =kind-figure(kind: kinds.slide, caption: caption, body, label: label)
