@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.5]
+
+fix bug on label support introduced in 0.5.4
 ## [0.5.4]
 - Enabled optional labeling for the following functions
   - theorem
