@@ -28,19 +28,19 @@
 }
 
 // Teorema, lemma, corollario e proposizione condividono la numerazione.
-#let theorem(supplement: [Teorema], title: none,label:none, body,) = env(kind: kinds.thm, supplement: supplement, title: title,label:none, body)
+#let theorem(supplement: [Teorema], title: none,label:none, body,) = env(kind: kinds.thm, supplement: supplement, title: title,label:label, body)
 
-#let lemma(supplement: [Lemma], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:none, body)
+#let lemma(supplement: [Lemma], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:label, body)
 
-#let corollary(supplement: [Corollario], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:none, body)
+#let corollary(supplement: [Corollario], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:label, body)
 
-#let proposition(supplement: [Proposizione], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:none, body)
+#let proposition(supplement: [Proposizione], title: none,label:none, body) = env(kind: kinds.thm, supplement: supplement, title: title,label:label, body)
 
-#let definition(supplement: [Definizione], title: none,label:none, body) = env(kind: kinds.definition, supplement: supplement, title: title,label:none, body)
+#let definition(supplement: [Definizione], title: none,label:none, body) = env(kind: kinds.definition, supplement: supplement, title: title,label:label, body)
 
-#let example(supplement: [Esempio], title: none,label:none, body) = env(kind: kinds.example, supplement: supplement, title: title,label:none, body)
+#let example(supplement: [Esempio], title: none,label:none, body) = env(kind: kinds.example, supplement: supplement, title: title,label:label, body)
 
-#let exercise(supplement: [Esercizio], title: none,label:none, body) = env(kind: kinds.exercise, supplement: supplement, title: title,label:none, body)
+#let exercise(supplement: [Esercizio], title: none,label:none, body) = env(kind: kinds.exercise, supplement: supplement, title: title,label:label, body)
 
 /// Dimostrazione: non numerata, non referenziabile, chiusa da.
 ///
